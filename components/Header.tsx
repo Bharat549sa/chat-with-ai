@@ -1,36 +1,37 @@
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { FilePlus2 } from "lucide-react";
+import UpgradeButton from "./UpgradeButton";
 
+function Header() {
+  return (
+    <div className="flex justify-between bg-white shadow-sm p-5 border-b">
+      <Link href="/dashboard" className="text-2xl">
+        Chat to <span className="text-indigo-600">PDF</span>
+      </Link>
 
+      <SignedIn>
+        <div className="flex items-center space-x-2">
+          <Button asChild variant="link" className="hidden md:flex">
+            <Link href="/dashboard/upgrade">Pricing</Link>
+          </Button>
 
-function Header(){
-//     return {
-//         <Header>
-    
-//     <Link href="/" prefetch={false} rel='stylesheet'>
-//     <h1> StoryTeller</h1>
-//     <div className="flex space-x-5 text-3xl lg:text-5xl">
-//     <h2> Bringing your stories</h2>
-   
-//     <div className="absolute bg-purpose-500 -left-2 -top-1-bottom-1 -right-2 md:-left-3 md:-top=0 md:-bottom-0 md:-right-3 -rotate-1 h-" />
+          <Button asChild variant="outline">
+            <Link href="/dashboard">My Documents</Link>
+          </Button>
 
-// <p className="relative text-white">To Life!</p>
-// </div>
-// </div>
+          <Button asChild variant="outline" className="border-indigo-600">
+            <Link href="/dashboard/upload">
+              <FilePlus2 className="text-indigo-600" />
+            </Link>
+          </Button>
 
-// </Link>
-
-// <div>
-// <Link href="/">
-// <FilePen className="w-8 h-8 lg:w-10 lg:h-10 mx-auto text-purpose-500 mt-10 border border-purple-500 p-2 rounded-md hover:opacity-50 cursor-painter" />
-
-// </Link>
-// <Link href="/stories"></Link>
-// </div>
-// </Header>
-    
-//     };
-
-
+          <UpgradeButton />
+          <UserButton />
+        </div>
+      </SignedIn>
+    </div>
+  );
 }
-
 export default Header;
